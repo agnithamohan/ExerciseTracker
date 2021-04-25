@@ -53,6 +53,7 @@ export default class InfoPanel extends Component {
   onSubmit(e) {
     e.preventDefault();
     // this.props.handleData(this.state.title)
+    window.location = '/start-chat'
   }
 
   render() {

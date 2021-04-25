@@ -1,45 +1,72 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width">
-        <title>Peer-to-Peer Cue System --- Reciever</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <table class="display">
-            <tr>
-                <td class="title">Status:</td>
-                <td class="title">Messages:</td>
+
+import React, { Component } from 'react';
+import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import { Link } from 'react-router-dom';
+import Peer from 'peerjs';
+
+
+export default class Receiver extends Component {
+  constructor(props) {
+    super(props);
+    const peer = new Peer("receiver", {
+      debug: 2
+    });
+    this.state = {
+      id: "receiver",
+      peer: peer,
+      messages: []
+    };
+    const conn = peer.connect('another-peers-id');
+  }
+
+  onSubmit(){
+    
+  }
+
+  onClearLogs(){
+
+  }
+
+  render() {
+    return (
+    <div>
+        <table className="display">
+          <tbody>
+          <tr>
+                <td className="title">Status:</td>
+                <td className="title">Messages:</td>
             </tr>
             <tr>
                 <td>
-                    <div id="receiver-id" style="font-weight: bold;" title="Copy this ID to the input on send.html.">ID:</div>
+                    <div id="receiver-id" style={{fontWeight: "bold"}} title="Copy this ID to the input on send.html.">ID:</div>
                 </td>
                 <td>
-                    <input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
-                    <button type="button" id="sendButton">Send</button>
-                    <button type="button" id="clearMsgsButton">Clear Msgs (Local)</button>
+                  <form onSubmit={this.onSubmit}>
+                    <div className="form-group"> 
+                    <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.message}
+                      onChange={this.onChangeMessage}
+                      />
+                      <input type="submit" value="Send Message" className="btn btn-primary" />
+                      <button type="button" onClick={() => this.onClearLogs()}>Clear Msgs (Local)</button>
+                    </div>
+                  </form>
                 </td>
             </tr>
             <tr>
-                <td><div id="status" class="status"></div></td>
-                <td><div class="message" id="message"></div></td>
+                <td><div id="status" className="status"></div></td>
+                <td><div className="message" id="message"></div></td>
             </tr>
-            <tr>
-                <td class="display-box standby" id="standby"><h2>Standby</h2></td>
-                <td class="display-box hidden" id="go"><h2>Go</h2></td>
-            </tr>
-            <tr>
-                <td class="display-box hidden" id="fade"><h2>Fade</h2></td>
-                <td class="display-box hidden" id="off"><h2>All Off</h2></td>
-            </tr>
+          </tbody>
         </table>
 
-        <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+        {/* <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
         <script type="text/javascript">
             (function () {
-
                 var lastPeerId = null;
                 var peer = null; // Own peer object
                 var peerId = null;
@@ -55,12 +82,6 @@
                 var sendButton = document.getElementById("sendButton");
                 var clearMsgsButton = document.getElementById("clearMsgsButton");
 
-                /**
-                 * Create the Peer object for our end of the connection.
-                 *
-                 * Sets up callbacks that handle any events related to our
-                 * peer object.
-                 */
                  function initialize() {
                     // Create own peer object with connection to shared PeerJS server
                     peer = new Peer(null, {
@@ -115,10 +136,6 @@
                     });
                 };
 
-                /**
-                 * Triggered once a connection has been achieved.
-                 * Defines callbacks to handle incoming data and connection events.
-                 */
                 function ready() {
                     conn.on('data', function (data) {
                         console.log("Data recieved");
@@ -233,6 +250,8 @@
 
                 initialize();
             })();
-        </script>
-    </body>
-</html>
+        </script> */}
+    </div>
+    )
+  }
+}
