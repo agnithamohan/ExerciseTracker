@@ -23,6 +23,26 @@ router.route('/add').post((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/addcomment/:id').post((req, res) => {
+    const id = req.body.id;
+    const comment = req.body.comment;
 
+    Post.findById(req.params.id)
+    .then(post => {
+        post.comments.push(comment);
+
+        post.save()
+        .then(() => res.json('Post updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+
+    // v = Post.findById(id)
+    // console.log("HEYYYYYYY")
+    // console.log(v)
+    //   .then(exercise =>
+    //     console.log(exercise)
+    //     )
+  });
 
 module.exports = router;

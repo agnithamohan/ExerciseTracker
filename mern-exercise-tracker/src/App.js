@@ -20,7 +20,7 @@ function App() {
         <Navbar />
         <br/>
         <Route path="/chat" exact component={Chat} />
-        <Route path="/edit/:id" component={EditExercise} />
+        <Route path="/comment/:id" component={EditExercise} />
         <Route path="/info" component={InfoPanel} />
         <Route path="/discussion" component={DiscussionForum} />
         </div>

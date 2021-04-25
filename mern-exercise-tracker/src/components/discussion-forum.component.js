@@ -17,6 +17,9 @@ const Post = props => (
     <td>
       {commentList(props.post.comments)}
     </td>
+    <td>
+      <Link to={"/comment/"+props.post._id}>comment</Link>
+    </td>
   </tr>
 )
 export default class InfoPanel extends Component {
@@ -104,7 +107,7 @@ export default class InfoPanel extends Component {
   render() {
     return (
         <div>
-        <h3>Start New Anonymous Chat</h3>
+        <h3>Start Discussion</h3>
         <form onSubmit={this.onSubmit}>
             <div className="form-group"> 
               <label>Post title: </label>
@@ -137,6 +140,7 @@ export default class InfoPanel extends Component {
               <th>Title</th>
               <th>Description</th>
               <th>Comments</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
