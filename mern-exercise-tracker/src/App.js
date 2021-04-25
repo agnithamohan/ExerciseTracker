@@ -12,6 +12,8 @@ import CreateUser from "./components/create-user.component";
 import InfoPanel from "./components/info-panel.component";
 import DiscussionForum from "./components/discussion-forum.component";
 import Chat from "./components/chat.component";
+import StartChat from "./components/start-chat.component"
+import Receiver from "./components/receiver.compenent"
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/comment/:id" component={EditExercise} />
         <Route path="/info" component={InfoPanel} />
         <Route path="/discussion" component={DiscussionForum} />
+        <Route path="/start-chat" component={StartChat} />
+        <Route path="/receiver" component={Receiver} />
         </div>
     </Router>
   );

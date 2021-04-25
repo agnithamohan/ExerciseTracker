@@ -36,13 +36,6 @@ router.route('/addcomment/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
-
-    // v = Post.findById(id)
-    // console.log("HEYYYYYYY")
-    // console.log(v)
-    //   .then(exercise =>
-    //     console.log(exercise)
-    //     )
   });
 
 module.exports = router;
