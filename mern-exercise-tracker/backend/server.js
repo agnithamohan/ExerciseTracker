@@ -21,12 +21,14 @@ const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users'); 
 const infoRouter = require('./routes/info'); 
 const topicsRouter = require('./routes/topics'); 
+const postsRouter = require('./routes/posts'); 
 
 
 app.use('/exercises', exercisesRouter); 
 app.use('/users', usersRouter); 
 app.use('/info', infoRouter);
 app.use('/topics', topicsRouter); 
+app.use('/posts', postsRouter); 
 
 
 app.listen(port, () => {

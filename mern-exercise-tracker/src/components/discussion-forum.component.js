@@ -38,18 +38,18 @@ export default class InfoPanel extends Component {
       date: new Date(),
       avl_sp: [], 
       topics: [], 
-      posts: [{"title":"LaLaLa", "description":"jajsj", "comments":["hi", "I agree"]}, {"title":"Kakk", "description":"nsd", "comments":["jd", "I jdj"]}]
+      posts: []
+      // {"title":"LaLaLa", "description":"jajsj", "comments":["hi", "I agree"]}, {"title":"Kakk", "description":"nsd", "comments":["jd", "I jdj"]}
     }
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/topics')
+    axios.get('http://localhost:5000/posts')
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
-            topics: response.data.map(topic => topic.title),
-            title: response.data[0].title,
-            avl_sp: response.data[0].avl_sp
+            posts: response.data,
+            
           })
         }
       })
@@ -78,8 +78,20 @@ export default class InfoPanel extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
     // this.props.handleData(this.state.title)
+    e.preventDefault();
+
+    const post = {
+      title: this.state.title,
+      description: this.state.description,
+      comments: []
+    }
+
+
+    axios.post('http://localhost:5000/posts/add', post)
+      .then(res => console.log(res.data));
+
+      window.location.reload(false);
   }
 
 
